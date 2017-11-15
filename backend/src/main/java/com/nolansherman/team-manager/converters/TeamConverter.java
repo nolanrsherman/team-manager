@@ -1,6 +1,8 @@
 package com.nolansherman.team_manager.converters;
 
 import com.nolansherman.team_manager.domains.Team;
+import com.nolansherman.team_manager.domains.Player;
+
 import com.nolansherman.team_manager.views.TeamView;
 import com.nolansherman.team_manager.repositories.PlayerRepository;
 import org.springframework.stereotype.Component;
@@ -43,7 +45,9 @@ public class TeamConverter implements Converter<Team, TeamView> {
     team.setId(domain.getId());
     team.setName(domain.getName());
     team.setHometown(domain.getHometown());
-    team.setCaptain(pConverter.convertToView(playerRepo.findOne(domain.getCaptainID())));
+    Player player = playerRepo.findOne(domain.getCaptainID());
+    if(player != null)
+      team.setCaptain(pConverter.convertToView(player));
 
     return team;
   }

@@ -40,11 +40,14 @@ public class TeamManager implements Manager<TeamView> {
 
     @Override
     public TeamView add(TeamView view){
-      Team team = converter.convertToDomain(view);
+      //first get the captain from the team and save it.
       PlayerView pv = view.getCaptain();
       PlayerView savedCaptain = playerManager.add(pv);
-      long captainId = savedCaptain.getId();
-      TeamView savedTeam = converter.convertToView(teamRepo.save(team));
+      view.setCaptain(savedCaptain);//set the views captain to the saved captain
+
+      Team team = converter.convertToDomain(view);//convert the team to a domain object
+
+      TeamView savedTeam = converter.convertToView(teamRepo.save(team));//save the team
       return savedTeam;
     }
 

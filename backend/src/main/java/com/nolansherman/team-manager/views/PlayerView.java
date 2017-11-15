@@ -149,4 +149,15 @@ public class PlayerView  extends View{
 	public void setNumber(int number) {
 		this.number = number;
 	}
+
+
+
+	/**
+	* Create string representation of PlayerView for printing
+	* @return
+	*/
+	@Override
+	public String toString() {
+		return "PlayerView [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position + ", phone=" + phone + ", teamID=" + teamID + ", number=" + number  + "]";
+	}
 }
