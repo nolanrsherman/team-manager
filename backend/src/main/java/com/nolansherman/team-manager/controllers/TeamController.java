@@ -45,6 +45,6 @@ public interface TeamController{
 	* team will be used to select the team to update.
 	* @return The updated TeamView.
 	*/
-	public TeamView updateTeam(TeamView team);
+	public TeamView updateTeam(long id, TeamView team);
 
 }

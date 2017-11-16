@@ -15,7 +15,7 @@ public interface Manager<T> {
 
     public T add(T view);
 
-    public T update(T view);
+    public T update(long id, T view);
 
     public T delete(Long id);
 }

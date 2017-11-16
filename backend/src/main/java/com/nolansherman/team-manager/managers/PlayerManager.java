@@ -37,13 +37,20 @@ public class PlayerManager implements Manager<PlayerView> {
 
     @Override
     public PlayerView add(PlayerView view){
+
       Player player = converter.convertToDomain(view);
       PlayerView savedPlayer = converter.convertToView(playerRepo.save(player));
       return savedPlayer;
     }
 
     @Override
-    public PlayerView update(PlayerView view){
+    public PlayerView update(long id, PlayerView view){
+      if(id != view.getId())//if the id is not the same as the view
+        return null;//dont do anythign and return null
+
+      if(this.get(id) == null)
+        return null;
+
       Player player = converter.convertToDomain(view);
       PlayerView savedPlayer = converter.convertToView(playerRepo.save(player));
       return savedPlayer;

@@ -48,11 +48,22 @@ public class TeamManager implements Manager<TeamView> {
       Team team = converter.convertToDomain(view);//convert the team to a domain object
 
       TeamView savedTeam = converter.convertToView(teamRepo.save(team));//save the team
+
+      savedCaptain.setTeamID(savedTeam.getId());//set the captains team ID
+      savedCaptain = playerManager.update(savedCaptain.getId(), savedCaptain); //update the id of captain in DB
+
+      savedTeam.setCaptain(savedCaptain);
       return savedTeam;
     }
 
     @Override
-    public TeamView update(TeamView view){
+    public TeamView update(long id, TeamView view){
+      if(id != view.getId())//if the id is not the same as the view
+        return null;//dont do anythign and return null
+
+      if(this.get(id) == null)
+        return null;
+
       Team team = converter.convertToDomain(view);
       TeamView savedTeam = converter.convertToView(teamRepo.save(team));
       return savedTeam;

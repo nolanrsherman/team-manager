@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/api/v1/player")
 @RestController
@@ -27,7 +28,7 @@ public class PlayerControllerV1 {
 	*/
   @RequestMapping(value = "/", method = RequestMethod.POST)
 	public PlayerView createPlayer(@RequestBody PlayerView player){
-    return null;
+    return playerManager.add(player);
   }
 
 	/**
@@ -44,8 +45,9 @@ public class PlayerControllerV1 {
 	* @param id The ID of the team to return.
 	* @return a TeamView object with the given ID
 	*/
-	public PlayerView getPlayerById(long id){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public PlayerView getPlayerById(@PathVariable long id){
+    return playerManager.get(id);
   }
 
 	/**
@@ -53,8 +55,9 @@ public class PlayerControllerV1 {
 	* @param id The ID of the team to remove from the database.
 	* @return The Team that was removed from the database.
 	*/
-	public PlayerView deletePlayerById(long id){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public PlayerView deletePlayerById(@PathVariable long id){
+    return playerManager.delete(id);
   }
 
 	/**
@@ -63,8 +66,9 @@ public class PlayerControllerV1 {
 	* team will be used to select the team to update.
 	* @return The updated TeamView.
 	*/
-	public PlayerView updatePlayer(PlayerView player){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public PlayerView updatePlayer(@PathVariable long id, @RequestBody PlayerView player){
+    return playerManager.update(id, player);
   }
 
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/api/v1/team")
 @RestController
@@ -34,8 +35,9 @@ public class TeamControllerV1 implements TeamController{
 	* Returns a List of all the teams in the database
 	* @return A list of all teams.
 	*/
+  @RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<TeamView> getAllTeams(){
-    return null;
+    return teamManager.getAll();
   }
 
 	/**
@@ -43,8 +45,9 @@ public class TeamControllerV1 implements TeamController{
 	* @param id The ID of the team to return.
 	* @return a TeamView object with the given ID
 	*/
-	public TeamView getTeamById(long id){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public TeamView getTeamById(@PathVariable long id){
+    return teamManager.get(id);
   }
 
 	/**
@@ -52,8 +55,9 @@ public class TeamControllerV1 implements TeamController{
 	* @param id The ID of the team to remove from the database.
 	* @return The Team that was removed from the database.
 	*/
-	public TeamView deleteTeamById(long id){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public TeamView deleteTeamById(@PathVariable long id){
+    return teamManager.delete(id);
   }
 
 	/**
@@ -62,8 +66,9 @@ public class TeamControllerV1 implements TeamController{
 	* team will be used to select the team to update.
 	* @return The updated TeamView.
 	*/
-	public TeamView updateTeam(TeamView team){
-    return null;
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public TeamView updateTeam(@PathVariable long id, @RequestBody TeamView team){
+    return teamManager.update(id, team);
   }
 
 

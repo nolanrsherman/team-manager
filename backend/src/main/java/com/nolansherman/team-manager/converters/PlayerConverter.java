@@ -19,6 +19,7 @@ public class PlayerConverter implements Converter<Player, PlayerView> {
   public Player convertToDomain(PlayerView view){
     Player player = new Player();//create empty team
     //add properties to team.
+    player.setId(view.getId());
     player.setFirstName(view.getFirstName());
     player.setLastName(view.getLastName());
     player.setPosition(view.getPosition());
@@ -36,6 +37,7 @@ public class PlayerConverter implements Converter<Player, PlayerView> {
   public PlayerView convertToView(Player domain){
     PlayerView player = new PlayerView();
 
+    player.setId(domain.getId());
     player.setFirstName(domain.getFirstName());
     player.setLastName(domain.getLastName());
     player.setPosition(domain.getPosition());
