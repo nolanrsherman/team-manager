@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     List<Player> findById(long id);
+    List<Player> findByTeamID(long id);
 }

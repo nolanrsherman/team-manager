@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nolansherman.team_manager.views.TeamView;
 import com.nolansherman.team_manager.managers.TeamManager;
+
+import com.nolansherman.team_manager.views.PlayerView;
+import com.nolansherman.team_manager.managers.PlayerManager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class TeamControllerV1 implements TeamController{
 
   @Autowired
   TeamManager teamManager;
+
+  @Autowired
+  PlayerManager playerManager;
 
   @RequestMapping(value = "", method = RequestMethod.GET)
 	public String endPointWelcome(){
@@ -74,6 +80,11 @@ public class TeamControllerV1 implements TeamController{
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public TeamView updateTeam(@PathVariable long id, @RequestBody TeamView team){
     return teamManager.update(id, team);
+  }
+
+  @RequestMapping(value = "/{id}/players", method = RequestMethod.GET)
+  public List<PlayerView> getTeamPlayers(@PathVariable long id){
+    return playerManager.getPlayersByTeamId(id);
   }
 
 

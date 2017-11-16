@@ -62,4 +62,9 @@ public class PlayerManager implements Manager<PlayerView> {
       playerRepo.delete(id);
       return converter.convertToView(player);
     }
+
+    public List<PlayerView> getPlayersByTeamId(Long id){
+      Iterable<Player> players = playerRepo.findByTeamID(id);
+      return converter.convertToViews(players);
+    }
 }
