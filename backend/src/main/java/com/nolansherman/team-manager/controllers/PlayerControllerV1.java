@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nolansherman.team_manager.views.PlayerView;
 import com.nolansherman.team_manager.managers.PlayerManager;
+import com.nolansherman.team_manager.managers.StatManager;
+import com.nolansherman.team_manager.views.StatView;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class PlayerControllerV1 {
 
   @Autowired
   PlayerManager playerManager;
+
+  @Autowired
+  StatManager statManager;
 
   /**
 	* Creates a new Team with the properties of the provided TeamView
@@ -70,6 +75,12 @@ public class PlayerControllerV1 {
 	public PlayerView updatePlayer(@PathVariable long id, @RequestBody PlayerView player){
     return playerManager.update(id, player);
   }
+
+  @RequestMapping(value = "/{id}/stats", method = RequestMethod.GET)
+	public List<StatView> getPlayerStats(@PathVariable long id){
+    return statManager.getStatsByPlayerId(id);
+  }
+
 
 
 

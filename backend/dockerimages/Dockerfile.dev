@@ -1,0 +1,23 @@
+#Development Image for Team-manager Spring backend
+
+#by default this dockerfile looks for an image called team-manager-base. If for
+#some reason you named your base image something different, update this argument.
+ARG baseImg=team-manage-base
+ARG vlmn=.
+
+FROM $baseImg
+
+EXPOSE 8080
+
+
+# Get dev configurations
+RUN  git clone https://gitlab.com/com-nolansherman-teammanage/configs-dev.git /app/config
+	
+#Set directory to app/main
+WORKDIR app/main
+
+#Run the application
+CMD bash
+
+
+

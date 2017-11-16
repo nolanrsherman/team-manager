@@ -4,36 +4,32 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.nolansherman.team_manager.views.TeamView;
-import com.nolansherman.team_manager.managers.TeamManager;
+import com.nolansherman.team_manager.views.StatView;
+import com.nolansherman.team_manager.managers.StatManager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@RequestMapping("/api/v1/team")
+@RequestMapping("/api/v1/stat")
 @RestController
-public class TeamControllerV1 implements TeamController{
+public class StatControllerV1 {
 
   @Autowired
-  TeamManager teamManager;
-
-  @RequestMapping(value = "", method = RequestMethod.GET)
-	public String endPointWelcome(){
-    return "This is the Team endpoint. More info coming soon.";
-  }
+  StatManager statManager;
 
   /**
 	* Creates a new Team with the properties of the provided TeamView
 	* and adds it to the database.
-	* @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: PlayerView.
-	* The PlayerView must have a name and phone number
+	* @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: StatView.
+	* The StatView must have a name and phone number
 	* @return Returns the TeamView if the creation was succcessful. Throws an error if not.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.POST)
-	public TeamView createTeam(@RequestBody TeamView team){
-    return teamManager.add(team);
+	public StatView createStat(@RequestBody StatView stat){
+    return statManager.add(stat);
   }
 
 	/**
@@ -41,8 +37,8 @@ public class TeamControllerV1 implements TeamController{
 	* @return A list of all teams.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<TeamView> getAllTeams(){
-    return teamManager.getAll();
+	public List<StatView> getAllStats(@RequestParam("playerId")long id){
+    return statManager.getAll();
   }
 
 	/**
@@ -51,8 +47,8 @@ public class TeamControllerV1 implements TeamController{
 	* @return a TeamView object with the given ID
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public TeamView getTeamById(@PathVariable long id){
-    return teamManager.get(id);
+	public StatView getStatById(@PathVariable long id){
+    return statManager.get(id);
   }
 
 	/**
@@ -61,8 +57,8 @@ public class TeamControllerV1 implements TeamController{
 	* @return The Team that was removed from the database.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public TeamView deleteTeamById(@PathVariable long id){
-    return teamManager.delete(id);
+	public StatView deleteStatById(@PathVariable long id){
+    return statManager.delete(id);
   }
 
 	/**
@@ -72,10 +68,9 @@ public class TeamControllerV1 implements TeamController{
 	* @return The updated TeamView.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public TeamView updateTeam(@PathVariable long id, @RequestBody TeamView team){
-    return teamManager.update(id, team);
+	public StatView updateStat(@PathVariable long id, @RequestBody StatView stat){
+    return statManager.update(id, stat);
   }
-
 
 
 }

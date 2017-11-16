@@ -1,0 +1,11 @@
+#team-manage-base
+#Base Image for TeamManage Spring backend
+
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y \
+        default-jdk \
+        maven \
+	git && \
+	mkdir app app/config app/main
+

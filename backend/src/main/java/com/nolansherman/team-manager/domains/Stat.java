@@ -27,7 +27,7 @@ public class Stat extends Domain{
   /**The value of this stat */
   private long value;
 
-  protected Stat(){}
+  public Stat(){}
 
   public Stat(long playerID, String label, long value){
     this.playerID = playerID;
