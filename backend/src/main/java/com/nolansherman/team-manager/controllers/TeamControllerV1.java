@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/api/v1/team")
 @RestController
-public class TeamControllerV1 implements TeamController{
+public class TeamControllerV1 {
 
   @Autowired
   TeamManager teamManager;
@@ -38,11 +38,10 @@ public class TeamControllerV1 implements TeamController{
   }
 
   /**
-	* Creates a new Team with the properties of the provided TeamView
-	* and adds it to the database.
+	* Creates a new Team with the properties of the provided TeamView and adds it to the database.
 	* @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: PlayerView.
 	* The PlayerView must have a name and phone number
-	* @return Returns the TeamView if the creation was succcessful. Throws an error if not.
+	* @return Returns the TeamView if the creation was succcessful.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.POST)
 	public TeamView createTeam(@RequestBody TeamView team){
@@ -89,11 +88,21 @@ public class TeamControllerV1 implements TeamController{
     return teamManager.update(id, team);
   }
 
+  /**
+  * Returns a list of all the players that belong to a given team.
+  * @param id The ID of the team whos player you want a list of.
+  * @return A list of all the players that belong to a given team.
+  */
   @RequestMapping(value = "/{id}/players", method = RequestMethod.GET)
   public List<PlayerView> getTeamPlayers(@PathVariable long id){
     return playerManager.getPlayersByTeamId(id);
   }
 
+  /**
+  * Returns a list of all the matches a team has or is scheduled to play in.
+  * @param id The ID of the team whos matches you want a list of.
+  * @return A list of all the matches for a given team (past and present).
+  */
   @RequestMapping(value = "/{id}/matchs", method = RequestMethod.GET)
   public List<MatchView> getMatchsByTeamId(@PathVariable long id){
     return matchManager.getMatchsByTeamId(id);

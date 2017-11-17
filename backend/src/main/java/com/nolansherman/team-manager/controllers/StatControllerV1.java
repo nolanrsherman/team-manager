@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
+/**
+* A Rest Controller for the Stat Domain
+* @author Nolan Sherman
+* @since Nov-2017
+*/
 @RequestMapping("/api/v1/stat")
 @RestController
 public class StatControllerV1 {
@@ -21,11 +27,9 @@ public class StatControllerV1 {
   StatManager statManager;
 
   /**
-	* Creates a new Team with the properties of the provided TeamView
-	* and adds it to the database.
-	* @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: StatView.
-	* The StatView must have a name and phone number
-	* @return Returns the TeamView if the creation was succcessful. Throws an error if not.
+	* Creates a new Stat with the properties of the provided StatView and adds it to the database.
+	* @param stat A StatView to store in the database.
+	* @return Returns the StatView if the creation was succcessful.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.POST)
 	public StatView createStat(@RequestBody StatView stat){
@@ -33,8 +37,8 @@ public class StatControllerV1 {
   }
 
 	/**
-	* Returns a List of all the teams in the database
-	* @return A list of all teams.
+	* Returns a List of all the stats in the database
+	* @return A list of all stats.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<StatView> getAllStats(@RequestParam("playerId")long id){
@@ -42,9 +46,9 @@ public class StatControllerV1 {
   }
 
 	/**
-	* Returns a team with the ID provided
-	* @param id The ID of the team to return.
-	* @return a TeamView object with the given ID
+	* Returns a stat with the ID provided
+	* @param id The ID of the stat to return.
+	* @return a StatView object with the given ID
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public StatView getStatById(@PathVariable long id){
@@ -52,9 +56,9 @@ public class StatControllerV1 {
   }
 
 	/**
-	* Removes a team with the given ID from the database.
-	* @param id The ID of the team to remove from the database.
-	* @return The Team that was removed from the database.
+	* Removes a stat with the given ID from the database.
+	* @param id The ID of the stat to remove from the database.
+	* @return The Stat that was removed from the database.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public StatView deleteStatById(@PathVariable long id){
@@ -62,10 +66,9 @@ public class StatControllerV1 {
   }
 
 	/**
-	* Update a given team.
-	* @param team A TeamView representing the team to update. The ID property of
-	* team will be used to select the team to update.
-	* @return The updated TeamView.
+	* Update a given stat.
+	* @param stat A StatView representing the stat to update. 
+	* @return The updated StatView.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public StatView updateStat(@PathVariable long id, @RequestBody StatView stat){

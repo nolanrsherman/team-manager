@@ -14,6 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+* A Rest Controller for the Player Domain
+* @author Nolan Sherman
+* @since Nov-2017
+*/
 @RequestMapping("/api/v1/player")
 @RestController
 public class PlayerControllerV1 {
@@ -25,11 +30,9 @@ public class PlayerControllerV1 {
   StatManager statManager;
 
   /**
-	* Creates a new Team with the properties of the provided TeamView
-	* and adds it to the database.
-	* @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: PlayerView.
-	* The PlayerView must have a name and phone number
-	* @return Returns the TeamView if the creation was succcessful. Throws an error if not.
+	* Creates a new Player with the properties of the provided PlayerView and adds it to the database.
+	* @param player A PlayerView to store in the database.
+	* @return Returns the PlayerView if the creation was succcessful.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.POST)
 	public PlayerView createPlayer(@RequestBody PlayerView player){
@@ -37,8 +40,8 @@ public class PlayerControllerV1 {
   }
 
 	/**
-	* Returns a List of all the teams in the database
-	* @return A list of all teams.
+	* Returns a List of all the players in the database
+	* @return A list of all players.
 	*/
   @RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<PlayerView> getAllPlayers(){
@@ -46,9 +49,9 @@ public class PlayerControllerV1 {
   }
 
 	/**
-	* Returns a team with the ID provided
-	* @param id The ID of the team to return.
-	* @return a TeamView object with the given ID
+	* Returns a player with the ID provided
+	* @param id The ID of the player to return.
+	* @return a PlayerView object with the given ID
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public PlayerView getPlayerById(@PathVariable long id){
@@ -56,9 +59,9 @@ public class PlayerControllerV1 {
   }
 
 	/**
-	* Removes a team with the given ID from the database.
-	* @param id The ID of the team to remove from the database.
-	* @return The Team that was removed from the database.
+	* Removes a player with the given ID from the database.
+	* @param id The ID of the player to remove from the database.
+	* @return The Player that was removed from the database.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public PlayerView deletePlayerById(@PathVariable long id){
@@ -66,16 +69,21 @@ public class PlayerControllerV1 {
   }
 
 	/**
-	* Update a given team.
-	* @param team A TeamView representing the team to update. The ID property of
-	* team will be used to select the team to update.
-	* @return The updated TeamView.
+	* Update a given player.
+	* @param player A PlayerView representing the player to update.
+	* @return The updated PlayerView.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public PlayerView updatePlayer(@PathVariable long id, @RequestBody PlayerView player){
     return playerManager.update(id, player);
   }
 
+
+  /**
+	* Get all the stats for a given player by the player's ID.
+	* @param id The id of the player whos stats you want a list of.
+	* @return A list of stats belonging to the player.
+	*/
   @RequestMapping(value = "/{id}/stats", method = RequestMethod.GET)
 	public List<StatView> getPlayerStats(@PathVariable long id){
     return statManager.getStatsByPlayerId(id);
