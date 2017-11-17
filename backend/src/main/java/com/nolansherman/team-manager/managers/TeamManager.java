@@ -10,7 +10,7 @@ import com.nolansherman.team_manager.converters.TeamConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
- * A manager interface
+ * A manager for the Team domain
  * @author Nolan Sherman
  * @since Nov-2017
  */
