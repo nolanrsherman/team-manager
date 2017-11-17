@@ -52,6 +52,9 @@ public class TeamConverter implements Converter<Team, TeamView> {
     return team;
   }
 
+  /**
+  * Converts a list of domain objects to a list of view objects.
+  */
   public List<TeamView> convertToViews(Iterable<Team> teams){
     List<TeamView> views = new LinkedList<TeamView>();
     for(Team team : teams)

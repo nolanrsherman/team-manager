@@ -48,6 +48,9 @@ public class PlayerConverter implements Converter<Player, PlayerView> {
     return player;
   }
 
+  /**
+  * Converts a list of domain objects to a list of view objects.
+  */
   public List<PlayerView> convertToViews(Iterable<Player> players){
     List<PlayerView> views = new LinkedList<PlayerView>();
     for(Player player : players)

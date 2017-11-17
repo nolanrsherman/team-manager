@@ -50,6 +50,9 @@ public class MatchConverter implements Converter<Match, MatchView> {
     return match;
   }
 
+  /**
+  * Converts a list of domain objects to a list of view objects.
+  */
   public List<MatchView> convertToViews(Iterable<Match> matchs){
     List<MatchView> views = new LinkedList<MatchView>();
     for(Match match : matchs)

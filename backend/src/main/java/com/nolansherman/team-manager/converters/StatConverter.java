@@ -42,6 +42,9 @@ public class StatConverter implements Converter<Stat, StatView> {
     return stat;
   }
 
+  /**
+  * Converts a list of domain objects to a list of view objects.
+  */
   public List<StatView> convertToViews(Iterable<Stat> stats){
     List<StatView> views = new LinkedList<StatView>();
     for(Stat stat : stats)
