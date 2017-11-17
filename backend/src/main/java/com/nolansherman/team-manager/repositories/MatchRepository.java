@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface MatchRepository extends CrudRepository<Match, Long> {
 
     List<Match> findById(long id);
+    List<Match> findDistinctMatchByTeam1IdOrTeam2Id(long fistTeamId, long secondTeamId);
 }

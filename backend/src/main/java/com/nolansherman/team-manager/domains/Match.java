@@ -18,33 +18,33 @@ public class Match extends Domain{
   private long id;
 
   /** The ID of the team who initiated this match*/
-  private long team1ID;
+  private long team1Id;
 
   /** The ID of the other team */
-  private long team2ID;
+  private long team2Id;
 
   /** The time and date of the match as a epoch*/
-  private long time;
+  private long time = 1510885984;
 
   /** The location of the match */
   private String geocode;
 
   /**The 1st team's score*/
-  private int scoreTeam1;
+  private int scoreTeam1 = 0;
 
   /**The 2nd team's score*/
-  private int scoreTeam2;
+  private int scoreTeam2 = 0;
 
   /** Whether or not this match has happened yet*/
-  private boolean isOver;
+  private boolean isOver = false;
 
-  protected Match(){}
+  public Match(){}
 
-  public Match(long team1ID, long team2ID, long time, String geocode,
+  public Match(long team1Id, long team2Id, long time, String geocode,
   int scoreTeam1, int scoreTeam2, boolean isOver){
 
-    this.team1ID = team1ID;
-    this.team2ID = team2ID;
+    this.team1Id = team1Id;
+    this.team2Id = team2Id;
     this.time = time;
     this.geocode = geocode;
     this.scoreTeam1 = scoreTeam1;
@@ -55,8 +55,8 @@ public class Match extends Domain{
   @Override
     public String toString() {
         return String.format(
-                "Match[id=%d, team1ID='%d', team2ID='%d', time='%d', geocode='%s', scoreTeam1='%d', scoreTeam2='%d', isOver='%b']",
-                team1ID, team2ID, time, geocode, scoreTeam1, scoreTeam2, isOver);
+                "Match[id=%d, team1Id='%d', team2Id='%d', time='%d', geocode='%s', scoreTeam1='%d', scoreTeam2='%d', isOver='%b']",
+                team1Id, team2Id, time, geocode, scoreTeam1, scoreTeam2, isOver);
     }
 
 	/**
@@ -76,35 +76,35 @@ public class Match extends Domain{
 	}
 
 	/**
-	* Returns value of team1ID
+	* Returns value of team1Id
 	* @return
 	*/
-	public long getTeam1ID() {
-		return team1ID;
+	public long getTeam1Id() {
+		return team1Id;
 	}
 
 	/**
-	* Sets new value of team1ID
+	* Sets new value of team1Id
 	* @param
 	*/
-	public void setTeam1ID(long team1ID) {
-		this.team1ID = team1ID;
+	public void setTeam1Id(long team1Id) {
+		this.team1Id = team1Id;
 	}
 
 	/**
-	* Returns value of team2ID
+	* Returns value of team2Id
 	* @return
 	*/
-	public long getTeam2ID() {
-		return team2ID;
+	public long getTeam2Id() {
+		return team2Id;
 	}
 
 	/**
-	* Sets new value of team2ID
+	* Sets new value of team2Id
 	* @param
 	*/
-	public void setTeam2ID(long team2ID) {
-		this.team2ID = team2ID;
+	public void setTeam2Id(long team2Id) {
+		this.team2Id = team2Id;
 	}
 
 	/**
