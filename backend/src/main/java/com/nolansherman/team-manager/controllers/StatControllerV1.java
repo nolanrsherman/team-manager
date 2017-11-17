@@ -67,7 +67,8 @@ public class StatControllerV1 {
 
 	/**
 	* Update a given stat.
-	* @param stat A StatView representing the stat to update. 
+  * @param id The id of the stat to update
+	* @param stat A StatView representing the stat to update.
 	* @return The updated StatView.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

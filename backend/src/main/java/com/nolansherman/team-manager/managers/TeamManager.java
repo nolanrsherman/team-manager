@@ -25,12 +25,21 @@ public class TeamManager implements Manager<TeamView> {
     @Autowired
     PlayerManager playerManager;
 
+    /**
+    * Returns a team with the ID provided
+    * @param id The ID of the team to return.
+    * @return a TeamView object with the given ID
+    */
     @Override
     public TeamView get(Long id){
       Team team = teamRepo.findOne(id);
       return converter.convertToView(team);
     }
 
+    /**
+    * Returns a List of all the teams in the database
+    * @return A list of all teams.
+    */
     @Override
     public List<TeamView> getAll(){
       Iterable<Team> teams = teamRepo.findAll();
@@ -38,6 +47,12 @@ public class TeamManager implements Manager<TeamView> {
       return converter.convertToViews(teams);
     }
 
+    /**
+    * Creates a new Team with the properties of the provided TeamView and adds it to the database.
+    * @param team A TeamView to store in the database. The TeamView must have a unique name, hometown and a valid captain: PlayerView.
+    * The PlayerView must have a name and phone number
+    * @return Returns the TeamView if the creation was succcessful.
+    */
     @Override
     public TeamView add(TeamView view){
       //first get the captain from the team and save it.
@@ -56,6 +71,12 @@ public class TeamManager implements Manager<TeamView> {
       return savedTeam;
     }
 
+    /**
+    * Update a given team.
+    * @param team A TeamView representing the team to update. The ID property of
+    * team will be used to select the team to update.
+    * @return The updated TeamView.
+    */
     @Override
     public TeamView update(long id, TeamView view){
       if(id != view.getId())//if the id is not the same as the view
@@ -69,6 +90,11 @@ public class TeamManager implements Manager<TeamView> {
       return savedTeam;
     }
 
+    /**
+    * Removes a team with the given ID from the database.
+    * @param id The ID of the team to remove from the database.
+    * @return The Team that was removed from the database.
+    */
     @Override
     public TeamView delete(Long id){
       Team team = teamRepo.findOne(id);

@@ -70,6 +70,7 @@ public class PlayerControllerV1 {
 
 	/**
 	* Update a given player.
+  * @param id The id of the player to update
 	* @param player A PlayerView representing the player to update.
 	* @return The updated PlayerView.
 	*/

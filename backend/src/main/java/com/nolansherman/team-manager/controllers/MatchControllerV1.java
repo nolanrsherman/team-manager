@@ -74,6 +74,7 @@ public class MatchControllerV1 {
 	* Update a given match.
 	* @param match A MatchView representing the match to update. The ID property of
 	* team will be used to select the team to update.
+  * @param id The id of the match to update
 	* @return The updated MatchView.
 	*/
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
